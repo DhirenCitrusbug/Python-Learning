@@ -1,46 +1,65 @@
-a = [['$','#','#','$','#'],['%','%','%','#','#'],['$','$','%','$','%']]
+a = [['$','#','#','$','#'],['%','^','%','#','#'],['^','$','%','$','%'],['$','^','%','^','^']]
 
-x = a[0].count('$')
-print(x)
+list_of_symboles = set()
+li = [[list_of_symboles.add(j) for j in i] for i in a] 
+list_of_symboles = list(list_of_symboles) #['%', '$', '#']
+print(list_of_symboles)
 swap = 0
 for i in a:
-    if i.count('$') != 0 and a.index(i)!=0:
-        for j in range(i.count('$')):
-            swap += 1
-
+    max_symbole = ''
+    count = 0
+    for s in list_of_symboles:
+       c = i.count(s)
+       if c>count:
+           count=c
+           max_symbole = s
+    for j in a:
+        if j == i:
+            continue
+        r = j.count(max_symbole)
+        for l in list_of_symboles:
+            if l == max_symbole:
+                continue
+            for t in range(r):
+                try:
+                    i[i.index(l)],j[j.index(max_symbole)] = j[j.index(max_symbole)],i[i.index(l)]
+                    swap = swap+1
+                except:
+                    pass
+                
+print(a)
 print(swap)
 
+# x = a[0].count('$')
+# print(x)
+# swap = 0
+# for i in a:
+#     if i.count('$') != 0 and a.index(i)!=0:
+#         for j in range(i.count('$')):
+#             swap += 1
 
-y = a[1].count('%')
-print(y)
-for i in a:
-    if i.count('%') != 0 and a.index(i)!=1:
-        for j in range(i.count('%')):
-            swap += 1
-
-
-print(swap)
-
-
-z = a[2].count('#')
-print(z)
-for i in a:
-    if i.count('#') != 0 and a.index(i)!=2:
-        for j in range(i.count('#')):
-            swap += 1
-
-print(swap)
+# print(swap)
 
 
+# y = a[1].count('%')
+# print(y)
+# for i in a:
+#     if i.count('%') != 0 and a.index(i)!=1:
+#         for j in range(i.count('%')):
+#             swap += 1
 
 
+# print(swap)
 
 
+# z = a[2].count('#')
+# print(z)
+# for i in a:
+#     if i.count('#') != 0 and a.index(i)!=2:
+#         for j in range(i.count('#')):
+#             swap += 1
 
-
-
-
-
+# print(swap)
 
 
 
